@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <meta name="descondeription" lang="en" content="">
+    <title>Sidebar</title>
+    
+    <style>
+        
+        body, html, #tab{
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            margin: 0;
+            height: 100%;
+            overflow-x: hidden;
+            
+        }
+        
+        nav{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+        .seagreen-txt{
+
+            color: seagreen;
+        }
+        .container{
+            text-align: center;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(0deg, #035335d2,  #10b361d7), url(https://placeimg.com/1000/350/tech);
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        
+        
+        .container div{
+            width: 100%;
+            
+        }
+        
+        #tab #menu{
+            background: seagreen;
+            width: 300px;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            right: 0;
+            padding: 70px 0px;  
+            text-transform: uppercase;
+        }
+        
+        #tab #menu a{
+            color:white;
+            width: calc(100% - 20px); 
+            text-decoration: none;
+            line-height: 1;
+            display: block;
+            padding: 20px;  
+        }
+        #tab #menu a:hover{
+            background: #32ad68;
+        }
+        
+        .initial{
+            opacity: 0;
+            transform: translatex(100vw);
+        }
+        
+        .esconde{
+            transition: 0.3s;
+            opacity: 0;
+            animation: toright 0.5s;
+            transform: translatex(100vw);
+        }
+        
+        .mostra{
+            transition: 0.5s;
+            opacity: 1;
+            animation: toleft 0.5s;
+            transform: translatex(0);
+        }
+        
+        @keyframes toright{
+            from{
+                transform: translatex(0);
+            }
+            to{
+                transform: translatex(100vw);
+            }
+        }
+
+        @keyframes toleft{
+            from{
+                transform: translatex(100vw);
+            }
+            to{
+                transform: translatex(0);
+            }
+        }
+        #tab #mostrar-btn{
+            color: seagreen;
+            border-color: seagreen;
+            border: 1px solid;
+            border-radius: 100px;
+            cursor: pointer;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
+            width: 40px;
+        }
+
+        #tab #mostrar-btn.mostra-icon{
+            color: white;
+            border-color: white;
+            right: 200px;
+        }
+
+        #tab #mostrar-btn.esconde-icon{
+            color: seagreen;
+            border-color: seagreen;
+        }
+
+        .mostra-icon .menu-icon{
+            width: 25px;
+            height: 2px;
+            margin: -1px -1px;
+            background: white;
+            animation: mostra-icon 0.5s;
+        }
+
+        .mostra-icon .menu-icon:first-child{
+            transform: rotateZ(45deg);
+        }
+
+        .mostra-icon .menu-icon:last-child{
+            transform: rotateZ(-45deg);
+        }
+        
+        .mostra-icon .menu-icon:nth-child(2){
+            display: none;
+        }
+        
+        .esconde-icon .menu-icon{
+            width: 25px;
+            height: 2px;
+            margin: 5px 0;
+            background: seagreen;
+            animation: esconde-icon 0.5s;
+        }
+        
+        @keyframes esconde-icon{
+            from{width: 0px}
+            to{width: 25px}
+        }
+        
+        @keyframes mostra-icon{
+            from{transform: rotatez(0deg);}
+        }
+        
+    </style>
+    
+</head>
+<body>
+    
+    <div id="tab" >
+        <nav>
+            <h1 class="seagreen-txt">LOL</h1>
+            <a onclick="changeClass()" id="mostrar-btn" class="esconde-icon">
+                <div>
+                    <div class="menu-icon"></div>
+                    <div class="menu-icon"></div>
+                    <div class="menu-icon"></div>
+                </div>
+            </a>
+        </nav>
+        
+        <div class="container"></div>
+        
+        <div id="menu" class="initial">
+            <a href="">link 1</a> 
+            <a href="">link 2</a> 
+            <a href="">link 3</a> 
+        </div>
+        
+    </div>
+    
+    <script>
+        function changeClass() {
+            // CONTROLA O SIDEBAR
+            document.getElementById('menu').className = (document.getElementById('menu').className == 'mostra') ? 'esconde':'mostra';
+            
+            // CONTROLA O BTN
+            document.getElementById('mostrar-btn').className = (document.getElementById('mostrar-btn').className == 'esconde-icon') ? 'mostra-icon':'esconde-icon';
+        }
+    </script>
+</body>
+</html>
